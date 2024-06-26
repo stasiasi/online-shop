@@ -1,13 +1,11 @@
-<script setup>
-
-</script>
-
 <template>
-  <header>
-   
-  </header>
+  <app-header></app-header>
+  <router-view></router-view>
 </template>
 
-<style scoped>
+<script setup>
+import { RouterView } from 'vue-router';
+import AppHeader from './components/AppHeader.vue';
+</script>
 
-</style>
+<style scoped></style>
