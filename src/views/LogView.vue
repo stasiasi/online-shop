@@ -27,15 +27,12 @@ const login = async () => {
   try {
     const response = await logIn(username.value, password.value);
     if (response.status === 200) {
-      router.push('/home');
+      router.push('/goods');
       hasError.value = false;
-
       const userStore = useUserStore();
       userStore.login(response.data);
-      console.log( userStore.userInfo);
     }
   } catch (error) {
-    console.error(error);
     hasError.value = true;
   }
 };
@@ -89,13 +86,13 @@ const login = async () => {
     width: 100%;
     border: none;
     border-radius: 32px;
-    background-color: #4a5e2d;
+    background-color: $primary-accent-color-light;
     cursor: pointer;
 
     @include font($font-color: $primary-color-light);
 
     &:hover {
-      background-color: #1f2f1c;
+      background-color: $primary-accent-color-dark;
     }
   }
 }

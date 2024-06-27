@@ -18,18 +18,18 @@ import { useUserStore } from '../stores/user';
 
 const router = useRouter();
 const userStore = useUserStore();
-const userInfo = computed(() => userStore.userInfo)
+const userInfo = computed(() => userStore.userInfo);
 const fullName = computed(() => {
   if (userInfo.value) {
-    return `${userInfo.value.firstName} ${userInfo.value.lastName}`
+    return `${userInfo.value.firstName} ${userInfo.value.lastName}`;
   }
-  return ''
-})
+  return '';
+});
 
 const logOut = () => {
   userStore.logout();
   router.push('/');
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -38,7 +38,7 @@ const logOut = () => {
 
 .header {
   display: flex;
-  padding: 15px 25px;
+  padding: 15px 55px;
   background-color: #4a5e2d;
   align-items: center;
   justify-content: end;
@@ -53,14 +53,14 @@ const logOut = () => {
   &__logout {
     height: 40px;
     border: none;
-    background-color: #4a5e2d;
+    background-color: $primary-accent-color-light;
     cursor: pointer;
     padding: 0 5px;
     @include font($font-color: $primary-color-light, $size: 20px);
 
     &:hover {
       border-radius: 10px;
-      background-color: #1f2f1c;
+      background-color: $primary-accent-color-dark;
     }
   }
 
@@ -71,7 +71,7 @@ const logOut = () => {
       justify-content: center;
       width: 40px;
       height: 40px;
-      background-color: white;
+      background-color: $primary-color-light;
       border-radius: 50%;
     }
     &__username {
