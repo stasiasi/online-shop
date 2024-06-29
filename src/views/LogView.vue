@@ -13,28 +13,17 @@
 </template>
 
 <script setup>
-import { logIn } from '../api/apiAuth';
-import { useRouter } from 'vue-router';
 import { ref } from 'vue';
-import { useUserStore } from '../stores/user';
+import { useAuthStore } from '../stores/auth';
 
-const router = useRouter();
+const authStore = useAuthStore();
 const username = ref('');
 const password = ref('');
 const hasError = ref(false);
 
 const login = async () => {
-  try {
-    const response = await logIn(username.value, password.value);
-    if (response.status === 200) {
-      router.push('/goods');
-      hasError.value = false;
-      const userStore = useUserStore();
-      userStore.login(response.data);
-    }
-  } catch (error) {
-    hasError.value = true;
-  }
+  const res =  await authStore.login(username.value, password.value);
+  hasError.value = !res;
 };
 </script>
 

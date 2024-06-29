@@ -1,35 +1,31 @@
 <template>
-  <header v-if="userInfo" class="header">
+  <header class="header">
     <div class="header__user-info user">
       <div class="user__avatar">
-        <img :src="userInfo.image" width="30px" height="30px" />
+        <img  :src="userStore.userInfo.image" width="30px" height="30px" />
       </div>
-      <span class="user__username">{{ fullName }}</span>
+      <span class="user__username">{{ userStore.fullName }}</span>
     </div>
-
     <button class="header__logout" @click="logOut()">Log out</button>
   </header>
+  <div>
+    <slot></slot>
+  </div>
 </template>
 
 <script setup>
-import { computed } from 'vue';
 import { useRouter } from 'vue-router';
-import { useUserStore } from '../stores/user';
+import { useAuthStore } from '../stores/auth';
 
 const router = useRouter();
-const userStore = useUserStore();
-const userInfo = computed(() => userStore.userInfo);
-const fullName = computed(() => {
-  if (userInfo.value) {
-    return `${userInfo.value.firstName} ${userInfo.value.lastName}`;
-  }
-  return '';
-});
+const userStore = useAuthStore();
 
 const logOut = () => {
   userStore.logout();
-  router.push('/');
+  router.push('/log');
 };
+
+
 </script>
 
 <style lang="scss" scoped>

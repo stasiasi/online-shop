@@ -1,5 +1,5 @@
 import axiosInstance from './apiHelper';
 
-export function getProducts(category) {
-  return axiosInstance.get(`/products${category}`);
+export function getProducts() {
+  return axiosInstance.get(`/products?limit=0&skip=42`);
 }
