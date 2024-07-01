@@ -12,8 +12,13 @@ const router = createRouter({
       path: '/log',
       name: 'logView',
       component: () => import('../views/LogView.vue')
+    },
+    {
+      path: '/productCard/:id',
+      name: 'productCard',
+      props: true,
+      component: () => import('../views/ProductCardView.vue')
     }
-    
   ]
 });
 

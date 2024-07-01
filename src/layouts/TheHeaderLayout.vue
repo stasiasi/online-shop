@@ -2,12 +2,14 @@
   <header class="header">
     <div class="header__user-info user">
       <div class="user__avatar">
-        <img  :src="userStore.userInfo.image" width="30px" height="30px" />
+        <img :src="userStore.userInfo.image" width="30px" height="30px" />
       </div>
       <span class="user__username">{{ userStore.fullName }}</span>
     </div>
     <button class="header__logout" @click="logOut()">Log out</button>
+    <button class="header__logout"  @click="toggleCartPopup">Cart</button>
   </header>
+  <cart-popup v-if="isCartPopupVisible" @click="closePopupOutside"></cart-popup>
   <div>
     <slot></slot>
   </div>
@@ -16,6 +18,10 @@
 <script setup>
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '../stores/auth';
+import useCart from '../composables/useCart'
+import CartPopup from '../views/CartView.vue'
+
+const { toggleCartPopup, closePopupOutside, isCartPopupVisible } = useCart()
 
 const router = useRouter();
 const userStore = useAuthStore();
@@ -24,8 +30,6 @@ const logOut = () => {
   userStore.logout();
   router.push('/log');
 };
-
-
 </script>
 
 <style lang="scss" scoped>

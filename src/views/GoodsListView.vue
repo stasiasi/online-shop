@@ -1,12 +1,13 @@
 <template>
   <div class="goods-list">
-    <small-card v-for="product in products" :key="product.id" :product="product"></small-card>
+    <product-preview v-for="product in products" :key="product.id" :product="product">
+    </product-preview>
   </div>
 </template>
 
 <script setup>
 import { getProducts } from '../api/apiProducts';
-import SmallCard from '../components/SmallCard.vue';
+import ProductPreview from '../components/ProductPreview.vue';
 //import CardSort from '../components/CardsSort.vue';
 import { useProductStore } from '../stores/product';
 import { onMounted, computed } from 'vue';

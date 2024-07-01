@@ -22,7 +22,7 @@ const password = ref('');
 const hasError = ref(false);
 
 const login = async () => {
-  const res =  await authStore.login(username.value, password.value);
+  const res = await authStore.login(username.value, password.value);
   hasError.value = !res;
 };
 </script>

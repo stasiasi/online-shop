@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "style": "sass src/sass/main.scss src/main.css",
+    "style": "sass src/sass/main.scss src/sass/main.css",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",

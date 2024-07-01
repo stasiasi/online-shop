@@ -4,7 +4,11 @@
       <img :src="product.images[0]" />
     </div>
     <div class="goods-card__content">
-      <span class="goods-card__info">{{ product.title }}</span>
+      <router-link
+        :to="{ name: 'productCard', params: { id: product.id } }"
+        class="goods-card__info"
+        >{{ product.title }}</router-link
+      >
       <span class="goods-card__info goods-card__info_small">{{ product.brand }}</span>
       <span class="goods-card__info">{{ product.price }} $</span>
       <div class="goods-card__rating rating">
@@ -17,11 +21,16 @@
         <span class="rating__info">{{ product.rating }}</span>
       </div>
     </div>
-    <button class="goods-card__add-to-cart">Add to cart</button>
+    <button class="goods-card__add-to-cart" @click="addToCart(product)">Add to cart</button>
   </div>
 </template>
 
 <script setup>
+import { RouterLink } from 'vue-router';
+import useCart from '../composables/useCart';
+
+const { addToCart } = useCart()
+
 defineProps({
   product: {
     type: Object

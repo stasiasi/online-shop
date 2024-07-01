@@ -27,15 +27,14 @@ export const useAuthStore = defineStore('user', () => {
   };
 
   const login = async (username, password) => {
-    try{
+    try {
       const response = await auth(username, password);
       userInfo.value = response.data;
       localStorage.setItem('token', response.data.token);
       isAuthenticated.value = true;
       router.push('/');
       return true;
-    }
-    catch(error){
+    } catch (error) {
       return false;
     }
   };
