@@ -5,11 +5,16 @@
     </div>
     <div class="goods-card__content">
       <router-link
-        :to="{ name: 'productCard', params: { id: product.id } }"
+        :to="{
+          name: 'productCard',
+          params: { product: JSON.stringify(product) }
+        }"
         class="goods-card__info"
         >{{ product.title }}</router-link
       >
-      <span class="goods-card__info goods-card__info_small">{{ product.brand }}</span>
+      <span class="goods-card__info goods-card__info_small">{{
+        product.brand
+      }}</span>
       <span class="goods-card__info">{{ product.price }} $</span>
       <div class="goods-card__rating rating">
         <img
@@ -21,7 +26,12 @@
         <span class="rating__info">{{ product.rating }}</span>
       </div>
     </div>
-    <button class="goods-card__add-to-cart" @click="addToCart(product)">Add to cart</button>
+    <button
+      class="goods-card__add-to-cart"
+      @click="addToCart(product)"
+    >
+      Add to cart
+    </button>
   </div>
 </template>
 
@@ -29,7 +39,7 @@
 import { RouterLink } from 'vue-router';
 import useCart from '../composables/useCart';
 
-const { addToCart } = useCart()
+const { addToCart } = useCart();
 
 defineProps({
   product: {
@@ -70,7 +80,11 @@ defineProps({
     @include font($size: 18px, $weight: 600);
     margin-bottom: 5px;
     &_small {
-      @include font($size: 14px, $weight: 400, $font-color: $primary-color-grey);
+      @include font(
+        $size: 14px,
+        $weight: 400,
+        $font-color: $primary-color-grey
+      );
     }
   }
 

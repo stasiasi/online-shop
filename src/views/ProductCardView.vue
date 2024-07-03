@@ -3,8 +3,16 @@
     <hr />
     <div class="product">
       <div>
-        <img :src="product.images[0]" class="product__image" />
-        <button class="product__add-to-cart">Add to cart</button>
+        <img
+          :src="product.images[0]"
+          class="product__image"
+        />
+        <button
+          @click="addToCart(product)"
+          class="product__add-to-cart"
+        >
+          Add to cart
+        </button>
       </div>
       <div class="product__info info">
         <span class="info__title">{{ product.title }}</span>
@@ -12,7 +20,10 @@
           <span class="info__description">Description</span>
           <span>{{ product.description }}</span>
         </div>
-        <div class="info__feature" v-if="product.brand">
+        <div
+          class="info__feature"
+          v-if="product.brand"
+        >
           <span class="info__description">Brand</span>
           <span>{{ product.brand }}</span>
         </div>
@@ -21,7 +32,11 @@
           <span>{{ product.category }}</span>
         </div>
         <div>
-          <div v-for="tag in product.tags" :key="tag.id" class="product__tag">
+          <div
+            v-for="tag in product.tags"
+            :key="tag.id"
+            class="product__tag"
+          >
             <span># {{ tag }}</span>
           </div>
         </div>
@@ -42,18 +57,14 @@
 </template>
 
 <script setup>
-import { useProductStore } from '../stores/product';
-import { computed } from 'vue';
+import useCart from '../composables/useCart';
+const { addToCart } = useCart();
 
-const props = defineProps({
-  id: {
-    type: String
+defineProps({
+  product: {
+    type: Object
   }
 });
-const productStore = useProductStore();
-const product = computed(() =>
-  productStore.productInfo.products.find((item) => item.id === Number(props.id))
-);
 </script>
 
 <style lang="scss" scoped>

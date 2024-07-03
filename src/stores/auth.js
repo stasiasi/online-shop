@@ -10,6 +10,7 @@ export const useAuthStore = defineStore('user', () => {
   const router = useRouter();
 
   const user = computed(() => userInfo.value);
+
   const fullName = computed(() => {
     if (userInfo.value) {
       return `${userInfo.value.firstName} ${userInfo.value.lastName}`;
@@ -45,5 +46,13 @@ export const useAuthStore = defineStore('user', () => {
     isAuthenticated.value = false;
   };
 
-  return { userInfo, isAuthenticated, user, fullName, currentUser, login, logout };
+  return {
+    userInfo,
+    isAuthenticated,
+    user,
+    fullName,
+    currentUser,
+    login,
+    logout
+  };
 });

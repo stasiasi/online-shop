@@ -14,10 +14,10 @@ const router = createRouter({
       component: () => import('../views/LogView.vue')
     },
     {
-      path: '/productCard/:id',
+      path: '/productCard/:product',
       name: 'productCard',
-      props: true,
-      component: () => import('../views/ProductCardView.vue')
+      component: () => import('../views/ProductCardView.vue'),
+      props: (route) => ({ product: JSON.parse(route.params.product) })
     }
   ]
 });

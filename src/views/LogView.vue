@@ -3,11 +3,30 @@
     <div class="login-form">
       <span class="login-form__title">Log in</span>
       <label for="username-input">Username</label>
-      <input v-model="username" class="login-form__user-info" type="text" id="username-input" />
+      <input
+        v-model="username"
+        class="login-form__user-info"
+        type="text"
+        id="username-input"
+      />
       <label for="password-input">Password</label>
-      <input v-model="password" class="login-form__user-info" type="password" id="password-input" />
-      <span v-if="hasError" class="login-form__error">The username or password is incorrect!</span>
-      <button class="login-form__login" @click="login">Log in</button>
+      <input
+        v-model="password"
+        class="login-form__user-info"
+        type="password"
+        id="password-input"
+      />
+      <span
+        v-if="hasError"
+        class="login-form__error"
+        >The username or password is incorrect!</span
+      >
+      <button
+        class="login-form__login"
+        @click="login"
+      >
+        Log in
+      </button>
     </div>
   </div>
 </template>

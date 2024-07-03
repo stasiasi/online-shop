@@ -1,24 +1,27 @@
 <template>
   <div class="goods-list">
-    <product-preview v-for="product in products" :key="product.id" :product="product">
+    <product-preview
+      v-for="product in products"
+      :key="product.id"
+      :product="product"
+    >
     </product-preview>
   </div>
 </template>
 
 <script setup>
-import { getProducts } from '../api/apiProducts';
 import ProductPreview from '../components/ProductPreview.vue';
-//import CardSort from '../components/CardsSort.vue';
-import { useProductStore } from '../stores/product';
-import { onMounted, computed } from 'vue';
+import { getProducts } from '../api/apiProducts';
+import { onMounted, ref } from 'vue';
 
-const productStore = useProductStore();
-const products = computed(() => productStore.productInfo.products);
+const products = ref([]);
 
 onMounted(async () => {
-  const response = await getProducts();
-  if (response.status === 200) {
-    productStore.set(response.data);
+  try {
+    const response = await getProducts();
+    products.value = response.data.products;
+  } catch (error) {
+    console.log(error);
   }
 });
 </script>
@@ -26,6 +29,7 @@ onMounted(async () => {
 <style lang="scss" scoped>
 @import '../sass/variables';
 @import '../sass/mixins';
+
 .goods-list {
   padding: 15px 50px;
   display: grid;
